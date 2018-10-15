@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 
 import argparse
+import yaml
 
 
 DEFAULT_TECHFILE_PATH = "techfile.yaml"
@@ -23,7 +24,10 @@ def main():
     run_subparser = subparsers.add_parser("run", help="Run a program in the current environment")
 
     args = parser.parse_args()
-    print(args)
+
+    with open(args.techfile) as techfile:
+        techconfig = yaml.load(techfile)
+        print(techconfig)
 
 if __name__ == "__main__":
     main()
